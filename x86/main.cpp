@@ -95,17 +95,17 @@ int backup(){
         std::cout << "Backupper >> Backup >> ";
         std::cin >> cmd;
 
-        if (cmd == "back"){
+        if (cmd == "back" || "b"){
             return 100; //return code for "operation complete"
         }
-        else if (cmd == "exit"){
+        else if (cmd == "exit" || "e"){
             system("cls");
             std::cout << "Closing Backupper..." << std::endl;
             std::cout << std::endl;
             system("color 0F");
             exit(0);
         } 
-        else if (cmd == "set"){
+        else if (cmd == "set"  || "s"){
             
             //asking for backup settings
             std::cout << std::endl;
@@ -126,7 +126,7 @@ int backup(){
             std::cout << "now you can apply or discard this task" << std::endl;
             std::cout << std::endl;
         }
-        else if (cmd == "apply"){
+        else if (cmd == "apply" || "a"){
             std::cout << std::endl;
             if (name == "" || source_dir == "" || destination_dir == ""){
                 std::cout << "backup not configured, type set to configure it" << std::endl;
@@ -146,7 +146,7 @@ int backup(){
             }
         }
 
-        else if (cmd == "reset"){
+        else if (cmd == "reset" || "r"){
             //settings reset
             source_dir.clear();
             destination_dir.clear();
@@ -155,17 +155,20 @@ int backup(){
             std::cout << "settings resetted due to user choise" << std::endl;
             std::cout << std::endl;
         }
-        else if (cmd == "help"){
+        else if (cmd == "help" || "h"){
             std::cout << std::endl << "Backup Mode Usage:"<< std::endl;
-            std::cout << "set       configure backup" << std::endl;
-            std::cout << "apply     perform configured backup" << std::endl;
-            std::cout << "reset     reset backup settings" << std::endl;
-            std::cout << "help      shows this page" << std::endl;
-            std::cout << "view      shows current settings" << std::endl;
-            std::cout << "back      go to home page" << std::endl << std::endl;
+            std::cout << "set | s           configure backup" << std::endl;
+            std::cout << "apply | a         perform configured backup" << std::endl;
+            std::cout << "reset | r         reset backup settings" << std::endl;
+            std::cout << "help | h          shows this page" << std::endl;
+            std::cout << "view | v          shows current settings" << std::endl;
+            std::cout << "delete | del      delete save file" << std::endl;
+            std::cout << "save | sa         save settings, usefull to load them quickly" << std::endl;
+            std::cout << "load | l          load settings from file";
+            std::cout << "back | b          go to home page" << std::endl << std::endl;
         }
-        else if (cmd == "save"){
-            std::cout << std::endl << "Saving backup settings...";
+        else if (cmd == "save" || "s"){
+            std::cout << std::endl << "Save backup settings...";
 
             result = save(source_dir, destination_dir, name, settingsFileName);
 
@@ -177,7 +180,7 @@ int backup(){
                 std::cout << "Settings not saved due to an error" << std::endl << std::endl;
             }
         }
-        else if (cmd == "load"){
+        else if (cmd == "load" || "l"){
             std::cout << std::endl << "Load backup settings" << std::endl;
             std::cout << "Insert save name...";
             std::cin >> settingsFileName;
@@ -191,11 +194,27 @@ int backup(){
                 std::cout << "Unable to load settings" << std::endl << std::endl;
             }
         }
-        else if (cmd == "view"){
+        else if (cmd == "view" || "v"){
             std::cout << std::endl << std::endl;
             std::cout << "Backup name = " << name << std::endl;
             std::cout << "Source directory: " << source_dir << std::endl;
             std::cout << "Destination directory = " << destination_dir << std::endl << std::endl;
+        }
+        else if (cmd == "delete" || "del"){
+            std::cout << std::endl;
+            std::cout << "Delete backup settings" << std::endl;
+            std::cout << "Insert save name...";
+            std::cin >> settingsFileName;
+            cmd = "if exist saves\\" + settingsFileName + ".txt (del saves\\" + settingsFileName + ".txt) else (exit /b 2)";
+            result == std::system(cmd.c_str());
+
+            if (result != 0){
+                std::cout << "Error: unable to delete " << settingsFileName << std::endl;
+            }
+            else{
+                std::cout << "Successfully deleted " << settingsFileName << std::endl;
+            }
+
         }
         else{
             std::cout << std::endl << std::endl;
