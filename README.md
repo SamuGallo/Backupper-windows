@@ -1,8 +1,8 @@
 # Backupper-windows
 a simple backup tool for Windows from CLI powered by 7-zip.
 
-**Usage:**
-once backupper started, you will be shown a screen like this:\
+**Usage:**\
+once backupper started, you will be shown a screen like this:
 
 ![Screenshot 2023-09-18 115101](https://github.com/SamuGallo/Backupper-windows/assets/112279924/268621db-7e91-4f7f-aed4-411eabd8acb7)
 
