@@ -6,10 +6,7 @@ set backup_dest_dir=%2
 
 set logfile=%backup_dest_dir%\events.log
 
-::moving to source directory
-
-cd %backup_source_dir%
-
 echo on
 
-7za.exe u -y %backup_dest_dir%\data.7z * >> %logfile%
+robocopy %backup_source_dir% %backup_dest_dir%\data  /MIR /LOG+:%logfile% /tee /COPY:DAT
+
