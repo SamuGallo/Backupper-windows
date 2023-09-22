@@ -1,5 +1,5 @@
 # Backupper-windows
-a simple backup tool for Windows from CLI powered by 7-zip.
+a simple backup tool for Windows from CLI
 
 **Usage:**\
 once backupper started, you will be shown a screen like this:
