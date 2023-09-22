@@ -21,7 +21,7 @@ int load(string filename, string& sourceDir, string& destDir, string& name);
 
 //namespaces
 namespace backupper{
-    int version = 1;
+    int version = 2;
     int result = 0;
 }
 
@@ -280,7 +280,7 @@ int perform_backup(string source_dir, string dest_dir, string name){
     //setting destination dir as the new directory created
     dest_dir = dest_dir + "\\" + name;
     std::cout << std::endl;
-    std::cout << "setted backup directory as " << dest_dir << std::endl << std::endl;
+    logFile << "setted backup directory as " << dest_dir << "\n\n";
 
     //executing script: backup-data.bat
     std::cout << "Baking up " << source_dir << std::endl;
@@ -292,7 +292,7 @@ int perform_backup(string source_dir, string dest_dir, string name){
     result = std::system(cmd.c_str()); //running string cmd
 
     fstream logFile2 (logFileDir);
-    if (result == 0){
+    if (result == 1){
         std::cout << "Done!" << std::endl;
         logFile2 << "Succesfully Backed up " << source_dir[i] << "\n";
     }
