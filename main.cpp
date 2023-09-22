@@ -199,7 +199,7 @@ int backup(){
             std::cout << "Source directory: " << source_dir << std::endl;
             std::cout << "Destination directory = " << destination_dir << std::endl << std::endl;
         }
-        else if (cmd == "delete" || "del"){
+        else if (cmd == "delete" || cmd == "del"){
             std::cout << std::endl;
             std::cout << "Delete backup settings" << std::endl;
             std::cout << "Insert save name...";
